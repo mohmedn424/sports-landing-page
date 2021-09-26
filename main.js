@@ -98,7 +98,6 @@ function setClipPathMenu(coverage) {
   menuSection.style = `clip-path: circle(${coverage}% at ${
     menuPos.left + 35
   }px ${menuPos.top + 34}px)`;
-  console.log(`clipPath set to ${coverage}`);
 }
 
 menuBtn.addEventListener('click', () => {
@@ -114,11 +113,10 @@ function setClipPathSerch(coverage) {
   searchSection.style = `clip-path: circle(${coverage}% at ${
     searchPos.left + 35
   }px ${searchPos.top + 34}px)`;
-  console.log(`clipPath set to ${coverage}`);
 }
 
 searchBtn.addEventListener('click', () => {
-  setClipPathSerch(180);
+  setClipPathSerch(140);
 });
 
 searchCloseBtn.addEventListener('click', () => {
@@ -128,8 +126,9 @@ searchCloseBtn.addEventListener('click', () => {
 setClipPathMenu(0);
 setClipPathSerch(0);
 
-document.addEventListener('keypress', function (e) {
-  if (e.which === 27) {
-    console.log('esc clicked');
+document.addEventListener('keyup', (e) => {
+  if (e.key === 'Escape') {
+    setClipPathMenu(0);
+    setClipPathSerch(0);
   }
 });
