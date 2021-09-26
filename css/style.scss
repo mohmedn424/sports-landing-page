@@ -454,25 +454,29 @@ nav {
 footer {
   position: absolute;
   bottom: 8vh;
-  width: 100%;
-  display: flex;
-  padding-left: var(--ruler);
-  padding-right: 60px;
-  justify-content: space-between;
-  .navigate-arrows {
+  left: var(--ruler);
+  right: 5vw;
+  @media screen and (max-width: 1000px) {
+    right: 12vw;
+  }
+  .footer-container {
     display: flex;
     justify-content: space-between;
-    .left-nav-button {
-      margin-right: 15px;
+    .navigate-arrows {
+      display: flex;
+      justify-content: space-between;
+      .left-nav-button {
+        margin-right: 15px;
+      }
+      .left-arrow {
+        transform: rotate(180deg);
+      }
     }
-    .left-arrow {
-      transform: rotate(180deg);
+    @media (max-width: 450px) {
+      bottom: 4vh;
     }
-  }
-  @media (max-width: 450px) {
-    bottom: 4vh;
-  }
-  @media (max-width: 550px) {
-    bottom: 5vh;
+    @media (max-width: 550px) {
+      bottom: 5vh;
+    }
   }
 }
