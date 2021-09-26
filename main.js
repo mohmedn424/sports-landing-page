@@ -77,7 +77,7 @@ function showSlides() {
     currentSlide = 1;
     theChecker;
   }
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
+  setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
 
 nextBtn.onclick = nextSlide;
@@ -85,3 +85,51 @@ nextBtn.onclick = nextSlide;
 prevBtn.onclick = prevSlide;
 
 showSlides();
+
+const menuSection = document.getElementById('menuSection');
+const searchSection = document.getElementById('searchSection');
+const menuBtn = document.getElementById('menubtn');
+const searchBtn = document.getElementById('searchBtn');
+const menuCloseBtn = document.getElementById('xBtnMenu');
+const searchCloseBtn = document.getElementById('xBtnSearch');
+
+function setClipPathMenu(coverage) {
+  const menuPos = menuBtn.getBoundingClientRect();
+  menuSection.style = `clip-path: circle(${coverage}% at ${
+    menuPos.left + 35
+  }px ${menuPos.top + 34}px)`;
+  console.log(`clipPath set to ${coverage}`);
+}
+
+menuBtn.addEventListener('click', () => {
+  setClipPathMenu(140);
+});
+
+menuCloseBtn.addEventListener('click', () => {
+  setClipPathMenu(0);
+});
+
+function setClipPathSerch(coverage) {
+  const searchPos = searchBtn.getBoundingClientRect();
+  searchSection.style = `clip-path: circle(${coverage}% at ${
+    searchPos.left + 35
+  }px ${searchPos.top + 34}px)`;
+  console.log(`clipPath set to ${coverage}`);
+}
+
+searchBtn.addEventListener('click', () => {
+  setClipPathSerch(180);
+});
+
+searchCloseBtn.addEventListener('click', () => {
+  setClipPathSerch(0);
+});
+
+setClipPathMenu(0);
+setClipPathSerch(0);
+
+document.addEventListener('keypress', function (e) {
+  if (e.which === 27) {
+    console.log('esc clicked');
+  }
+});

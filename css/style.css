@@ -76,6 +76,67 @@ a {
   }
 }
 
+.nav-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: items;
+}
+
+.nav-menu .current-page {
+  font-weight: 600;
+}
+
+.nav-menu .current-page a {
+  cursor: default;
+}
+
+.nav-menu .current-page::after {
+  position: absolute;
+  content: '';
+  background-color: black;
+  height: 2px;
+  width: 100%;
+  border-radius: 5px;
+  bottom: -2px;
+  left: 0;
+}
+
+.nav-menu li {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 80px 0 0;
+}
+
+.nav-menu li::first-letter {
+  text-transform: uppercase;
+}
+
+.nav-menu li::before {
+  position: absolute;
+  counter-increment: items;
+  content: "0" counter(items);
+  top: -1.5em;
+  right: 0;
+}
+
+.nav-menu li:not(.current-page)::after {
+  position: absolute;
+  content: '';
+  background-color: black;
+  height: 2px;
+  width: 0px;
+  border-radius: 5px;
+  bottom: -2px;
+  left: 0;
+  -webkit-transition: 500ms ease;
+  transition: 500ms ease;
+}
+
+.nav-menu li:hover::after {
+  width: 100%;
+}
+
 .slider-container img {
   position: absolute;
   width: 100%;
@@ -194,63 +255,6 @@ nav .logo-text::before {
   z-index: -1;
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: items;
-}
-
-nav ul .current-page {
-  font-weight: 600;
-}
-
-nav ul .current-page::after {
-  position: absolute;
-  content: '';
-  background-color: black;
-  height: 2px;
-  width: 100%;
-  border-radius: 5px;
-  bottom: -2px;
-  left: 0;
-}
-
-nav ul li {
-  position: relative;
-  display: inline-block;
-  margin: 1.5em 80px 0 0;
-}
-
-nav ul li::first-letter {
-  text-transform: uppercase;
-}
-
-nav ul li::before {
-  position: absolute;
-  counter-increment: items;
-  content: "0" counter(items);
-  top: -1.5em;
-  right: 0;
-}
-
-nav ul li:not(.current-page)::after {
-  position: absolute;
-  content: '';
-  background-color: black;
-  height: 2px;
-  width: 0px;
-  border-radius: 5px;
-  bottom: -2px;
-  left: 0;
-  -webkit-transition: 500ms ease;
-  transition: 500ms ease;
-}
-
-nav ul li:hover::after {
-  width: 100%;
-}
-
 @media screen and (max-width: 1000px) {
   nav {
     padding: 1% 50px 0 10px;
@@ -296,11 +300,22 @@ nav .nav-button-cta a {
 }
 
 .content-section .video-button-cta {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
   margin-bottom: 40px;
   margin-top: 40px;
   background-color: black;
   width: 82px;
   height: 82px;
+}
+
+.content-section .video-button-cta img {
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
 }
 
 .content-section .video-button-cta:hover {
@@ -428,10 +443,178 @@ nav .nav-button-cta a {
   left: 50px;
 }
 
+.content-section .right ul li a:after {
+  position: absolute;
+  content: '';
+  background-color: black;
+  height: 2px;
+  width: 0%;
+  border-radius: 5px;
+  bottom: -2px;
+  left: 1.3em;
+  -webkit-transition: 500ms ease;
+  transition: 500ms ease;
+}
+
+.content-section .right ul li a:hover:not(.behance)::after {
+  width: 50%;
+}
+
+.content-section .right ul li a:hover::after {
+  width: 75%;
+}
+
 @media screen and (max-width: 1000px) {
   .content-section .right ul {
     display: none;
   }
+}
+
+.overflow-section {
+  position: fixed;
+  background-color: black;
+  -webkit-transition: 1s ease;
+  transition: 1s ease;
+  z-index: 5;
+  height: 100vh;
+  width: 100%;
+}
+
+.menu-button-cta-section .menu-nav-cta {
+  padding: 5em 0 0 5em;
+}
+
+.menu-button-cta-section .menu-nav-cta li {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: block;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-button-cta-section .menu-nav-cta li::before {
+  top: -10px;
+  left: -2em;
+}
+
+.menu-button-cta-section .menu-nav-cta li::after {
+  background-color: white;
+}
+
+.menu-button-cta-section .menu-nav-cta li a {
+  color: white;
+}
+
+.menu-button-cta-section .more-info {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 70px;
+  left: 100px;
+  font-weight: lighter;
+}
+
+.menu-button-cta-section .more-info p {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-button-cta-section .more-info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    left: 2em;
+    gap: 1em;
+  }
+}
+
+.menu-button-cta-section .x-button {
+  position: absolute;
+  right: 3em;
+  top: 5em;
+}
+
+.search-button-cta-section {
+  padding-top: 10em;
+  height: 100vh;
+}
+
+.search-button-cta-section .x-button {
+  position: absolute;
+  right: 3em;
+  top: 5em;
+}
+
+@media screen and (max-width: 768px) {
+  .search-button-cta-section .x-button {
+    right: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+}
+
+.search-button-cta-section .search-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 5em;
+}
+
+.search-button-cta-section .search-container .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  width: 40%;
+}
+
+@media (max-width: 900px) {
+  .search-button-cta-section .search-container .search {
+    width: 80%;
+  }
+}
+
+.search-button-cta-section .search-container .search i {
+  position: absolute;
+  left: 0;
+  padding: 5px;
+}
+
+.search-button-cta-section .search-container .search i img {
+  width: 30px;
+}
+
+.search-button-cta-section .search-container .search input {
+  all: unset;
+  padding: 10px;
+  padding-left: 50px;
+  border: none;
+  font-size: 17px;
+  background-color: white;
+  width: 100%;
 }
 
 footer {
