@@ -1,3 +1,5 @@
+'use strict';
+
 let sliderContainer = Array.from(
   document.querySelectorAll('.slider-container img')
 );
